@@ -53,12 +53,12 @@ class ShowRunner:
         self.player.playSong(self.currentSong)
 
         # Set current time to zero. This will serve as the timer for running all of the actions.
-        startTime = time.clock_gettime(time.CLOCK_REALTIME)
+        startTime = time.time()
 
         # Loop through the actions and run them per the scripted time.
         for action in self.actionList:
             actionTime = float(action.time) + startTime
-            currentTime = time.clock_gettime(time.CLOCK_REALTIME)
+            currentTime = time.time()
             if (actionTime > currentTime):
                 time.sleep(actionTime - currentTime)
 
@@ -79,8 +79,4 @@ class ShowRunner:
             except Exception as e:
                 print(e)
         return
-
-#    def turnLightOff(self, boxID, channelID):
-#        #TODO
-#        return
 

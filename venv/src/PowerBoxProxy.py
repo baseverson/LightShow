@@ -1,6 +1,5 @@
-import socket
-import time
-import struct
+import requests
+import json
 
 class PowerBoxProxy:
 
@@ -9,46 +8,39 @@ class PowerBoxProxy:
         self.port = port
         self.numChannels = numChannels
 
-        self.mySocket = socket.socket()
-        self.connected = False
-
-    def connect(self):
-        retries = 0
-        MAX_RETRIES = 10
-
-        while not self.connected and retries <= MAX_RETRIES:
-            try:
-                self.mySocket.connect((self.address, self.port))
-            except Exception as e:
-#                print(e)
-                time.sleep(1)
-#                print("Retrying connection to " + self.address + ":" + str(self.port))
-                retries += 1
-            else:
-                print("Connection to " + self.address + ":" + str(self.port) + " established.")
-                self.connected = True
-
-        if not self.connected:
-            print("Connection to " + self.address + ":" + str(self.port) + " failed.")
-
-    def disconnect(self):
-        self.mySocket.close()
-        self.connected = False
-
     def sendCmd(self, channel, action):
-        msg = str(channel) + "," + action
+        url = "http://" + self.address + ":" + str(self.port) + "/PowerBox/setChannelState"
+        channelCommand = {
+            'channel': channel,
+            'state': action
+        }
+#        print("Sending command to ", url, " ", json.dumps(channelCommand))
+        resp = requests.post(url, json=channelCommand)
+        if resp.status_code != 200:
+            raise Exception('Exception calling POST', url, json.dumps(channelCommand), format(resp.status_code))
+        return
 
-        if not self.connected:
-            # If the socket is not connected, raise an exception.
-            #raise Exception("Socket not connected.")
-            print("Socket not connected (" + self.address + ":" + str(self.port) + ") - Message (" + msg + ") not sent.")
-            return
-
-        if (channel != '*') and (int(channel) > self.numChannels or int(channel) <= 0):
-            # If the action requested is for an invalid channel, raise an exception
-            raise Exception("Invalid channel ID.")
-
-        self.mySocket.send(msg.encode())
-        ack = self.mySocket.recv(1024).decode()
-        print(str(time.clock_gettime(time.CLOCK_REALTIME)) + " Sent command (" + msg + ") to " + self.address + ":" + str(self.port))
-
+    def channelOn(self, channel):
+        url = "http://" + self.address + ":" + str(self.port) + "/PowerBox/setChannelState"
+        channelCommand = {
+            'channel':channel,
+            'state':'ON'
+        }
+#        print("Sending command to ", url, " ", json.dumps(channelCommand))
+        resp = requests.post(url, json=channelCommand)
+        if resp.status_code != 200:
+            raise Exception('Exception calling POST', url, json.dumps(channelCommand), format(resp.status_code))
+        return
+    
+    def channelOff(self, channel):
+        url = "http://" + self.address + ":" + str(self.port) + "/PowerBox/setChannelState"
+        channelCommand = {
+            'channel': channel,
+            'state': 'OFF'
+        }
+        #        print("Sending command to ", url, " ", json.dumps(channelCommand))
+        resp = requests.post(url, json=channelCommand)
+        if resp.status_code != 200:
+            raise Exception('Exception calling POST', url, json.dumps(channelCommand), format(resp.status_code))
+        return
+    
