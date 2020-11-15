@@ -61,8 +61,9 @@ class MasterController:
 
     def Main(self):
 
+        self.readPlaylist()
+
         while True:
-            self.readPlaylist()
 
             for iter in self.playlist:
                 tokens = iter.split(" ")
