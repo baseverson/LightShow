@@ -61,22 +61,23 @@ class MasterController:
 
     def Main(self):
 
-        self.readPlaylist()
+        while True:
+            self.readPlaylist()
 
-        for iter in self.playlist:
-            tokens = iter.split(" ")
-            if tokens[0] == "ALL_ON":
-                print("Turning all lights on for " + str(float(tokens[1])) + " seconds.")
-                self.allLightsOn()
-                time.sleep(float(tokens[1]))
-            elif tokens[0] == "ALL_OFF":
-                print("Turning all lights off for " + str(float(tokens[1])) + " seconds.")
-                self.allLightsOff()
-                time.sleep(float(tokens[1]))
-            else:
-                print ("Running script: " + tokens[0])
-                self.showRunner.readScript(tokens[0])
-                self.showRunner.runScript()
+            for iter in self.playlist:
+                tokens = iter.split(" ")
+                if tokens[0] == "ALL_ON":
+                    print("Turning all lights on for " + str(float(tokens[1])) + " seconds.")
+                    self.allLightsOn()
+                    time.sleep(float(tokens[1]))
+                elif tokens[0] == "ALL_OFF":
+                    print("Turning all lights off for " + str(float(tokens[1])) + " seconds.")
+                    self.allLightsOff()
+                    time.sleep(float(tokens[1]))
+                else:
+                    print ("Running script: " + tokens[0])
+                    self.showRunner.readScript(tokens[0])
+                    self.showRunner.runScript()
 
 
 if __name__== '__main__':
