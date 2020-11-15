@@ -20,6 +20,7 @@ class ShowRunner:
     def readScript(self, scriptName):
         print("Reading script: " + self.musicDir + '/' + scriptName + '.script')
         file = open(self.musicDir + '/' + scriptName + '.script', "r")
+        self.actionList = []
         lines = []
         for line in file:
 #            print("Line: " + line)
