@@ -50,7 +50,8 @@ class ShowRunner:
             return
 
         # Start the song
-        self.player.playSong(self.currentSong)
+        if self.currentSong != "none":
+            self.player.playSong(self.currentSong)
 
         # Set current time to zero. This will serve as the timer for running all of the actions.
         startTime = time.time()
