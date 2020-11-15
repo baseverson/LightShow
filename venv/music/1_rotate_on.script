@@ -24,10 +24,10 @@ none
 # Actions in the format of [time] [power box ID] [channel ID] [action]
 0 1 * OFF
 1 1 1 ON
-1 1 2 ON
-1 1 3 ON
-1 1 4 ON
-1 1 5 ON
-1 1 6 ON
-1 1 7 ON
-1 1 8 ON
+2 1 2 ON
+3 1 3 ON
+4 1 4 ON
+5 1 5 ON
+6 1 6 ON
+7 1 7 ON
+8 1 8 ON
