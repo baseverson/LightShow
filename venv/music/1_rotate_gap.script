@@ -1,0 +1,56 @@
+########################################################################################################
+# This is a script for automating a light show.
+#
+# The first non-comment line of this file must be the name of the song file (e.g. mp3 file).
+#
+# The remaining lines should follow the following format:
+#
+# [time] [power box ID] [channel ID] [action]
+#    time: Time in seconds from the start of the song
+#    power box ID: Numerical ID of the power box as defined in the master config
+#              '*' (asterisk) can be used as a wild card and refers to all power boxes
+#    channel ID: Numerical ID of the channel within the power box
+#              '*' (asterisk) can be used as a wild card and refers to all channels in the power box
+#    action: Action to take on the channel. Allowable actions are:
+#              ON
+#              OFF
+#
+# Comments are allowed at any time in the file. Lines that contain comments must start with a
+# pound sign ('#').
+########################################################################################################
+# Song
+none
+
+# Actions in the format of [time] [power box ID] [channel ID] [action]
+
+# Start by turning all lights on except for 1 and 5
+# Turn off opposite light strands for 1 second and rotate through
+
+1 1 1 OFF
+1 1 2 ON
+1 1 3 ON
+1 1 4 ON
+1 1 5 OFF
+1 1 6 ON
+1 1 7 ON
+1 1 8 ON
+
+2 1 1 ON
+2 1 5 ON
+2 1 2 OFF
+2 1 6 OFF
+
+3 1 2 ON
+3 1 6 ON
+3 1 3 OFF
+3 1 7 OFF
+
+4 1 3 ON
+4 1 7 ON
+4 1 4 OFF
+4 1 8 OFF
+
+#5 1 4 ON
+#5 1 8 ON
+#5 1 1 OFF
+#5 1 5 OFF
