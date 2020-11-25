@@ -61,7 +61,7 @@ class ShowRunner:
         # Loop through the actions and run them per the scripted time.
         for action in self.actionList:
             # Check to make sure we are not past the end time for the show
-            now = datetime.now()
+            now = datetime.now().time()
             if (now > endTime):
                 break
 
