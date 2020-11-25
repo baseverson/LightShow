@@ -1,6 +1,7 @@
 import time
 import configparser
 from dataclasses import dataclass
+from datetime import datetime
 
 @dataclass
 class Action:
@@ -45,7 +46,7 @@ class ShowRunner:
             self.actionList.append(newAction)
         return
 
-    def runScript(self):
+    def runScript(self, endTime):
         if self.currentSong == "":
             print("No script currently loaded.")
             return
@@ -59,6 +60,11 @@ class ShowRunner:
 
         # Loop through the actions and run them per the scripted time.
         for action in self.actionList:
+            # Check to make sure we are not past the end time for the show
+            now = datetime.now()
+            if (now > endTime):
+                break
+
             actionTime = float(action.time) + startTime
             currentTime = time.time()
             if (actionTime > currentTime):

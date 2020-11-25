@@ -91,9 +91,9 @@ class MasterController:
                         if (now > endTime):
                             break
 
-                        print ("Running script: " + tokens[0])
+                        print("Running script: " + tokens[0])
                         self.showRunner.readScript(tokens[0])
-                        self.showRunner.runScript()
+                        self.showRunner.runScript(endTime)
                 else:
                     self.allLightsOff()
                     time.sleep(30)
