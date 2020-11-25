@@ -32,3 +32,16 @@ class MasterConfig:
 
     def getMusicDir(self):
         return self.config.get('General', 'musicDir')
+
+    def getStartTimeHour(self):
+        return self.config.get('StartTime', 'hour')
+
+    def getStartTimeMinute(self):
+        return self.config.get('StartTime', 'minute')
+
+    def getStopTimeHour(self):
+        return self.config.get('StopTime', 'hour')
+
+    def getStopTimeMinute(self):
+        return self.config.get('StopTime', 'minute')
+
