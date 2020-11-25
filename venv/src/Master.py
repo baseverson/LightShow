@@ -71,10 +71,7 @@ class MasterController:
 
             # Generate start and end times
             startTime = now.replace(
-                hour=self.cfg.getStartTimeHour(),
-                minute=self.cfg.getStartTimeMinute(),
-                second=0,
-                microsecond=0)
+                hour=self.cfg.getStartTimeHour(), minute=self.cfg.getStartTimeMinute(), second=0, microsecond=0)
             endTime = now.replace(
                 hour=self.cfg.getEndTimeHour(),
                 minute=self.cfg.getEndTimeMinute(),
