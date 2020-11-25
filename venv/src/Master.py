@@ -88,14 +88,14 @@ class MasterController:
                         time.sleep(float(tokens[1]))
                     else:
                         # Check to see if we are outside of the operating time.  If so, break the loop
-                        if ((now < startTime) | (now > endTime)):
+                        if (now > endTime):
                             break
 
                         print ("Running script: " + tokens[0])
                         self.showRunner.readScript(tokens[0])
                         self.showRunner.runScript()
                 else:
-                    time.sleep(10)
+                    time.sleep(30)
 
 
 if __name__== '__main__':
