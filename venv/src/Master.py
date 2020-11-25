@@ -74,7 +74,7 @@ class MasterController:
             endTime = now.replace(hour=int(self.cfg.getEndTimeHour()), minute=int(self.cfg.getEndTimeMinute()), second=0, microsecond=0)
 
             # Make sure we're after the start time and before the stop time
-            if (now > startTime & now < endTime):
+            if ((now > startTime) & (now < endTime)):
 
                 for iter in self.playlist:
                     tokens = iter.split(" ")
