@@ -95,6 +95,7 @@ class MasterController:
                         self.showRunner.readScript(tokens[0])
                         self.showRunner.runScript()
                 else:
+                    self.allLightsOff()
                     time.sleep(30)
 
 
