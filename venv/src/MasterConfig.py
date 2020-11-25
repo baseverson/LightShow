@@ -39,9 +39,9 @@ class MasterConfig:
     def getStartTimeMinute(self):
         return self.config.get('StartTime', 'minute')
 
-    def getStopTimeHour(self):
+    def getEndTimeHour(self):
         return self.config.get('StopTime', 'hour')
 
-    def getStopTimeMinute(self):
+    def getEndTimeMinute(self):
         return self.config.get('StopTime', 'minute')
 
