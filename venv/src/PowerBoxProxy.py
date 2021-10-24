@@ -15,32 +15,42 @@ class PowerBoxProxy:
             'state': action
         }
 #        print("Sending command to ", url, " ", json.dumps(channelCommand))
-        resp = requests.post(url, json=channelCommand)
-        if resp.status_code != 200:
-            raise Exception('Exception calling POST', url, json.dumps(channelCommand), format(resp.status_code))
+        try:
+            resp = requests.post(url, json=channelCommand)
+            if resp.status_code != 200:
+                print("Exception sending command to ", url, " ", json.dumps(channelCommand), format(resp.status_code))
+#                raise Exception('Exception calling POST', url, json.dumps(channelCommand), format(resp.status_code))
+        except Exception as e:
+            print(e)
         return
 
     def channelOn(self, channel):
-        url = "http://" + self.address + ":" + str(self.port) + "/PowerBox/setChannelState"
-        channelCommand = {
-            'channel':channel,
-            'state':'ON'
-        }
+        self.sendCmd(channel, "ON")
+        
+#        url = "http://" + self.address + ":" + str(self.port) + "/PowerBox/setChannelState"
+#        channelCommand = {
+#            'channel':channel,
+#            'state':'ON'
+#        }
 #        print("Sending command to ", url, " ", json.dumps(channelCommand))
-        resp = requests.post(url, json=channelCommand)
-        if resp.status_code != 200:
-            raise Exception('Exception calling POST', url, json.dumps(channelCommand), format(resp.status_code))
-        return
+#        resp = requests.post(url, json=channelCommand)
+#        if resp.status_code != 200:
+#            print("Exception sending command to ", url, " ", json.dumps(channelCommand), format(resp.status_code))
+#            raise Exception('Exception calling POST', url, json.dumps(channelCommand), format(resp.status_code))
+#        return
     
     def channelOff(self, channel):
-        url = "http://" + self.address + ":" + str(self.port) + "/PowerBox/setChannelState"
-        channelCommand = {
-            'channel': channel,
-            'state': 'OFF'
-        }
+        self.sendCmd(channel, "ON")
+
+#        url = "http://" + self.address + ":" + str(self.port) + "/PowerBox/setChannelState"
+#        channelCommand = {
+#            'channel': channel,
+#            'state': 'OFF'
+#        }
         #        print("Sending command to ", url, " ", json.dumps(channelCommand))
-        resp = requests.post(url, json=channelCommand)
-        if resp.status_code != 200:
-            raise Exception('Exception calling POST', url, json.dumps(channelCommand), format(resp.status_code))
-        return
+#        resp = requests.post(url, json=channelCommand)
+#        if resp.status_code != 200:
+#            print("Exception sending command to ", url, " ", json.dumps(channelCommand), format(resp.status_code))
+#            raise Exception('Exception calling POST', url, json.dumps(channelCommand), format(resp.status_code))
+#        return
     
