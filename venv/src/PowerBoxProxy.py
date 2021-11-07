@@ -40,7 +40,7 @@ class PowerBoxProxy:
 #        return
     
     def channelOff(self, channel):
-        self.sendCmd(channel, "ON")
+        self.sendCmd(channel, "OFF")
 
 #        url = "http://" + self.address + ":" + str(self.port) + "/PowerBox/setChannelState"
 #        channelCommand = {
