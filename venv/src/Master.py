@@ -94,9 +94,9 @@ class MasterController:
                         print("Running script: " + tokens[0])
                         self.showRunner.readScript(tokens[0])
                         self.showRunner.runScript(endTime)
-                else:
-                    self.allLightsOff()
-                    time.sleep(30)
+            else:
+                self.allLightsOff()
+                time.sleep(30)
 
 
 if __name__== '__main__':
